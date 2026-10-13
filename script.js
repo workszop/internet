@@ -13,257 +13,283 @@ const translations = {
     en: {
         // Page meta
         page_title: "What Happens When You Enter a URL | Interactive Guide",
-        page_description: "Learn what happens behind the scenes when you type a website URL in your browser and press Enter. Interactive educational visualization.",
+        page_description: "Eight steps from pressing Enter to a finished page: cache, DNS, TCP, TLS, HTTP and rendering. An interactive animation with explanations.",
 
         // Header
         title_main: "What Happens When You Enter a URL",
-        subtitle: "An interactive journey through the web request lifecycle",
+        subtitle: "Eight steps from pressing Enter to a finished page. Play the animation or move through it step by step.",
 
         // Timeline labels
         step_1_label: "Enter URL",
-        step_2_label: "Check Cache",
-        step_3_label: "DNS Lookup",
-        step_4_label: "TCP Connect",
-        step_5_label: "TLS Handshake",
-        step_6_label: "HTTP Request",
-        step_7_label: "Server Response",
-        step_8_label: "Render Page",
+        step_2_label: "Check cache",
+        step_3_label: "DNS lookup",
+        step_4_label: "TCP connection",
+        step_5_label: "TLS encryption",
+        step_6_label: "HTTP request",
+        step_7_label: "Server response",
+        step_8_label: "Rendering",
+        step_of: "Step {n} of {total}",
 
         // Step 1
-        speech_bubble: "I want to visit",
-        step_1_title: "User Enters URL",
-        step_1_desc: "The journey begins when you type a website address (URL) into your browser's address bar and press Enter. The browser now needs to figure out how to reach that website.",
-        step_1_card_title: "What is a URL?",
-        step_1_card_desc: "<strong>URL</strong> stands for <em>Uniform Resource Locator</em>. It's the address that tells your browser where to find a specific resource on the internet.",
+        you: "You",
+        url_protocol: "Protocol",
+        url_subdomain: "Subdomain",
+        url_domain: "Domain",
+        url_path: "Path",
+        url_query: "Query",
+        step_1_title: "You type an address",
+        step_1_desc: "You type www.google.com into the address bar and press Enter. At this point the browser only knows a name. To fetch the page it has to find the server that holds it, and for that it needs the server's IP address.",
+        step_1_card_title: "The parts of a URL",
+        step_1_li_proto: "<code>https://</code> is the protocol, the way the browser talks to the server. The “s” means the connection is encrypted. If you leave it out, the browser adds it for you.",
+        step_1_li_sub: "<code>www.</code> is a subdomain, a part of the address the domain owner chooses",
+        step_1_li_domain: "<code>google.com</code> is the domain, the name DNS will turn into an IP address",
+        step_1_li_path: "<code>/search</code> is the path to a specific page on the server. An empty path means the home page, <code>/</code>",
+        step_1_li_query: "<code>?q=hello</code> is the query, extra data for the server, such as a search phrase",
 
         // Step 2
-        browser_cache: "Browser Cache",
-        os_cache: "OS Cache",
-        router_cache: "Router Cache",
-        isp_cache: "ISP Cache",
+        browser_cache: "Browser cache",
+        os_cache: "OS cache",
+        router_cache: "Router cache",
+        isp_cache: "ISP cache",
         cache_miss: "MISS",
-        cache_hit: "HIT",
-        cache_arrow_label: "Cache miss → Query DNS server",
-        step_2_title: "Check Cache",
-        step_2_desc: "Before making any network requests, the browser checks if it already knows the IP address for this domain. It searches through multiple cache layers.",
-        step_2_card_title: "Cache Hierarchy",
-        step_2_li_browser: "<strong>Browser Cache:</strong> Recently visited sites stored in browser memory",
-        step_2_li_os: "<strong>OS Cache:</strong> Operating system's DNS resolver cache",
-        step_2_li_router: "<strong>Router Cache:</strong> Your home router's cached DNS entries",
-        step_2_li_isp: "<strong>ISP Cache:</strong> Your Internet Service Provider's DNS cache",
+        cache_arrow_label: "No address found → ask DNS",
+        step_2_title: "Looking for the address in the cache",
+        step_2_desc: "Before sending anything to the internet, the browser checks whether the IP address of google.com is already stored somewhere along the way. A cache is a short-term memory of recent answers, and every entry expires after a set time (TTL). In this animation every layer comes up empty, so the browser has to ask DNS.",
+        step_2_card_title: "Where it looks, in order",
+        step_2_li_browser: "<strong>Browser:</strong> IP addresses of domains you visited recently",
+        step_2_li_os: "<strong>Operating system:</strong> one DNS memory shared by every program on the computer",
+        step_2_li_router: "<strong>Router:</strong> a home router often remembers DNS answers for every device on the network",
+        step_2_li_isp: "<strong>ISP resolver:</strong> your internet provider's DNS server. It has the biggest cache, and if the address is missing there too, it asks the next DNS servers itself (step 3).",
 
         // Step 3
-        root_server: "Root Server",
-        root_response: '"Ask .com TLD"',
-        tld_server: ".com TLD Server",
-        tld_response: '"Ask Google\'s NS"',
-        auth_server: "Authoritative NS",
-        resolved_ip: "Resolved IP Address",
-        step_3_title: "DNS Resolution",
-        step_3_desc: "DNS (Domain Name System) translates human-readable domain names into IP addresses that computers use to identify each other on the network.",
-        step_3_card_title: "DNS Hierarchy",
-        step_3_li_root: "<strong>Root Server:</strong> Knows where to find TLD servers (.com, .org, etc.)",
-        step_3_li_tld: "<strong>TLD Server:</strong> Knows which authoritative servers handle specific domains",
-        step_3_li_auth: "<strong>Authoritative NS:</strong> Has the actual IP address for the domain",
+        root_server: "Root server",
+        root_response: "“Ask the .com server”",
+        tld_server: ".com server",
+        tld_response: "“Ask Google's server”",
+        auth_server: "Authoritative server",
+        resolved_ip: "IP address found",
+        step_3_title: "DNS lookup",
+        step_3_desc: "DNS turns domain names into IP addresses, much like a phone book turns a name into a number. No single machine knows every address, so the provider's resolver asks three servers in turn, from the most general to the most specific. It then stores the answer in its cache so the next lookup is faster.",
+        step_3_card_title: "Who knows the answer",
+        step_3_li_root: "<strong>Root server:</strong> does not know the address of google.com, but knows who handles .com, .org, .pl and the other endings",
+        step_3_li_tld: "<strong>.com server (TLD):</strong> knows which server is responsible for google.com",
+        step_3_li_auth: "<strong>Authoritative server:</strong> belongs to the domain owner and gives the final IP address, here 142.250.185.46",
 
         // Step 4
-        your_browser: "Your Browser",
-        google_server: "Google Server",
-        tcp_established: "TCP Connection Established",
-        step_4_title: "TCP 3-Way Handshake",
-        step_4_desc: "Before any data can be exchanged, a reliable connection must be established using the TCP (Transmission Control Protocol) three-way handshake.",
-        step_4_card_title: "The Three-Way Handshake",
-        step_4_li_syn: "<strong>SYN:</strong> Client sends a synchronization request",
-        step_4_li_synack: "<strong>SYN-ACK:</strong> Server acknowledges and sends its own sync",
-        step_4_li_ack: "<strong>ACK:</strong> Client acknowledges, connection is now established",
+        your_browser: "Your browser",
+        google_server: "Google server",
+        tcp_established: "TCP connection open",
+        step_4_title: "TCP connection",
+        step_4_desc: "The browser now knows the server's IP address. Before it asks for the page, the two computers set up a connection using TCP. TCP makes sure data arrives complete and in the right order, and resends any packets that get lost. Three short messages are enough to start.",
+        step_4_card_title: "Three-way handshake",
+        step_4_li_syn: "<strong>SYN:</strong> the browser asks to connect and sends the number it will start counting its data from",
+        step_4_li_synack: "<strong>SYN-ACK:</strong> the server confirms and sends its own starting number",
+        step_4_li_ack: "<strong>ACK:</strong> the browser confirms the server's number. The connection is open.",
 
         // Step 5
         client_hello: "Client Hello",
-        server_hello: "Server Hello + Certificate",
-        key_exchange: "Key Exchange",
-        secure_channel: "Secure Channel",
-        step_5_title: "TLS Handshake",
-        step_5_desc: "For HTTPS connections, a TLS (Transport Layer Security) handshake establishes an encrypted communication channel to protect your data.",
-        step_5_card_title: "TLS Handshake Steps",
-        step_5_li_hello: "<strong>Client Hello:</strong> Browser sends supported encryption methods",
-        step_5_li_server: "<strong>Server Hello:</strong> Server sends its certificate and chosen encryption",
-        step_5_li_key: "<strong>Key Exchange:</strong> Both parties establish shared encryption keys",
-        step_5_li_secure: "<strong>Secure Channel:</strong> All further communication is encrypted",
+        server_hello: "Server Hello + certificate",
+        key_exchange: "Key exchange",
+        secure_channel: "Encrypted channel",
+        step_5_title: "TLS encryption",
+        step_5_desc: "The address starts with https, so before any content is sent, the browser and the server agree on a shared secret key (the TLS handshake). From then on nobody along the way, whether a router or the internet provider, can read or change the data.",
+        step_5_card_title: "How the shared key is made",
+        step_5_li_hello: "<strong>Client Hello:</strong> the browser sends the list of ciphers it supports and its part of the key",
+        step_5_li_server: "<strong>Server Hello + certificate:</strong> the server picks a cipher and sends back its part of the key and a certificate proving it really is google.com",
+        step_5_li_key: "<strong>Key exchange:</strong> the browser checks the certificate, and each side computes the same session key from the exchanged parts. The key itself never travels over the network.",
+        step_5_li_secure: "<strong>Encrypted channel:</strong> everything that follows, including the HTTP request and response, is encrypted with that key",
 
         // Step 6
-        step_6_title: "HTTP Request",
-        step_6_desc: "Your browser sends an HTTP GET request to the server, asking for the webpage content. The request includes headers with information about your browser and what content you can accept.",
-        step_6_card_title: "HTTP Request Components",
-        step_6_li_method: "<strong>Method:</strong> GET (retrieve), POST (submit), etc.",
-        step_6_li_path: "<strong>Path:</strong> The specific resource being requested",
-        step_6_li_headers: "<strong>Headers:</strong> Metadata about the request",
-        step_6_li_body: "<strong>Body:</strong> Optional data (mainly for POST requests)",
+        step_6_title: "HTTP request",
+        step_6_desc: "The connection is open and encrypted, so the browser asks for the page. It sends an HTTP request: the GET method (“give me”), the path / (the home page) and headers with information about itself, such as which language it prefers.",
+        step_6_card_title: "What a request contains",
+        step_6_li_method: "<strong>Method:</strong> what the browser wants to do. GET fetches a page, POST sends data, such as a form.",
+        step_6_li_path: "<strong>Path:</strong> which resource on the server; / is the home page",
+        step_6_li_headers: "<strong>Headers:</strong> extra information, such as Host (the site name), Accept-Language (the language) or User-Agent (the browser name and version)",
+        step_6_li_body: "<strong>Body:</strong> data to send, such as a filled-in form. A GET request usually has none.",
 
         // Step 7
-        step_7_title: "Server Response",
-        step_7_desc: "The server processes your request and sends back a response containing the HTML document, along with CSS stylesheets and JavaScript files needed to render the page.",
-        step_7_card_title: "Response Contents",
-        step_7_li_html: "<strong>HTML:</strong> The structure and content of the page",
-        step_7_li_css: "<strong>CSS:</strong> Styling rules for visual presentation",
-        step_7_li_js: "<strong>JavaScript:</strong> Code for interactivity and dynamic behavior",
-        step_7_li_status: "<strong>Status Code:</strong> 200 OK, 404 Not Found, etc.",
+        step_7_title: "Server response",
+        step_7_desc: "The server sends back a status code, headers and the HTML document. The HTML refers to other files: CSS stylesheets, JavaScript and images. The browser fetches them with further requests, often over the same connection and several at a time.",
+        step_7_card_title: "What comes back",
+        step_7_li_status: "<strong>Status code:</strong> the short result of the request: 200 OK (all fine), 301 (the page has moved), 404 (no such page)",
+        step_7_li_html: "<strong>HTML:</strong> the content and structure of the page: headings, paragraphs, links, images",
+        step_7_li_css: "<strong>CSS:</strong> the look: colours, fonts, spacing, layout",
+        step_7_li_js: "<strong>JavaScript:</strong> a program that responds to clicks and can change the page after it loads",
 
         // Step 8
-        parse_html: "Parse HTML",
+        parse_html: "HTML",
         tokenizer: "Tokenizer",
-        dom_tree: "DOM Tree",
-        parse_css: "Parse CSS",
-        cssom_tree: "CSSOM Tree",
-        load_js: "Load JavaScript",
-        render_tree: "Render Tree",
+        dom_tree: "DOM tree",
+        parse_css: "CSS",
+        cssom_tree: "CSSOM tree",
+        load_js: "JavaScript",
+        render_tree: "Render tree",
         layout: "Layout",
         paint: "Paint",
-        page_success: "Page Successfully Loaded!",
-        step_8_title: "Browser Rendering",
-        step_8_desc: "The browser processes all received files to construct and display the final webpage. This involves parsing, building tree structures, and painting pixels on screen.",
-        step_8_card_title: "Rendering Pipeline",
-        step_8_li_dom: "<strong>DOM Tree:</strong> HTML is parsed into a Document Object Model",
-        step_8_li_cssom: "<strong>CSSOM Tree:</strong> CSS is parsed into a style object model",
-        step_8_li_render: "<strong>Render Tree:</strong> DOM + CSSOM combined for visible elements",
-        step_8_li_layout: "<strong>Layout:</strong> Calculate exact position and size of elements",
-        step_8_li_paint: "<strong>Paint:</strong> Fill in pixels on the screen",
+        page_success: "Page ready",
+        step_8_title: "Rendering the page",
+        step_8_desc: "The browser has all the files. Now it turns HTML and CSS text into pixels: it builds two trees from them, combines them, works out where everything goes, and only then draws the page on screen.",
+        step_8_card_title: "Rendering stages",
+        step_8_li_dom: "<strong>DOM tree:</strong> the HTML split into tags and arranged as a tree of page elements",
+        step_8_li_cssom: "<strong>CSSOM tree:</strong> the CSS rules as a tree that gives the style of every element",
+        step_8_li_js: "<strong>JavaScript:</strong> a script can change the DOM and CSSOM. A <code>&lt;script&gt;</code> tag without async or defer pauses HTML parsing until the script has run.",
+        step_8_li_render: "<strong>Render tree:</strong> DOM and CSSOM combined. Only visible elements end up here, so anything with display: none is left out.",
+        step_8_li_layout: "<strong>Layout:</strong> the browser calculates the exact position and size of every element",
+        step_8_li_paint: "<strong>Paint:</strong> elements become pixels: text, colours, borders, images",
 
         // Navigation
-        previous: "Previous",
-        auto_play: "Auto Play",
+        previous: "Back",
+        auto_play: "Play",
         pause: "Pause",
         next: "Next",
+        kbd_steps: "steps",
+        kbd_space: "Space",
+        kbd_auto: "play",
 
         // Footer
-        footer_text: "An interactive educational visualization • Learn how the web works"
+        footer_text: "An interactive lesson on how the web works"
     },
 
     pl: {
         // Page meta
         page_title: "Co się dzieje, gdy wpisujesz URL | Interaktywny przewodnik",
-        page_description: "Dowiedz się, co dzieje się za kulisami, gdy wpisujesz adres strony w przeglądarce i naciskasz Enter. Interaktywna wizualizacja edukacyjna.",
+        page_description: "Osiem kroków od naciśnięcia Enter do gotowej strony: cache, DNS, TCP, TLS, HTTP i renderowanie. Interaktywna animacja z objaśnieniami.",
 
         // Header
         title_main: "Co się dzieje, gdy wpisujesz URL",
-        subtitle: "Interaktywna podróż przez cykl życia żądania sieciowego",
+        subtitle: "Osiem kroków od naciśnięcia Enter do gotowej strony. Włącz odtwarzanie albo przechodź krok po kroku.",
 
         // Timeline labels
-        step_1_label: "Wpisz URL",
-        step_2_label: "Sprawdź cache",
-        step_3_label: "DNS Lookup",
-        step_4_label: "TCP Connect",
-        step_5_label: "TLS Handshake",
+        step_1_label: "Wpisanie adresu",
+        step_2_label: "Sprawdzenie cache",
+        step_3_label: "Zapytanie DNS",
+        step_4_label: "Połączenie TCP",
+        step_5_label: "Szyfrowanie TLS",
         step_6_label: "Żądanie HTTP",
         step_7_label: "Odpowiedź serwera",
-        step_8_label: "Renderuj stronę",
+        step_8_label: "Renderowanie",
+        step_of: "Krok {n} z {total}",
 
         // Step 1
-        speech_bubble: "Chcę odwiedzić",
-        step_1_title: "Użytkownik wpisuje URL",
-        step_1_desc: "Podróż zaczyna się, gdy wpisujesz adres strony internetowej (URL) w pasek adresu przeglądarki i naciskasz Enter. Przeglądarka musi teraz dowiedzieć się, jak dotrzeć do tej strony.",
-        step_1_card_title: "Czym jest URL?",
-        step_1_card_desc: "<strong>URL</strong> to skrót od <em>Uniform Resource Locator</em> (Jednolity Lokalizator Zasobów). To adres, który mówi przeglądarce, gdzie znaleźć konkretny zasób w internecie.",
+        you: "Ty",
+        url_protocol: "Protokół",
+        url_subdomain: "Subdomena",
+        url_domain: "Domena",
+        url_path: "Ścieżka",
+        url_query: "Zapytanie",
+        step_1_title: "Wpisujesz adres",
+        step_1_desc: "Wpisujesz www.google.com w pasek adresu i naciskasz Enter. Przeglądarka zna na razie tylko nazwę. Żeby pobrać stronę, musi znaleźć serwer, na którym ona leży, a do tego potrzebuje jego adresu IP.",
+        step_1_card_title: "Z czego składa się URL",
+        step_1_li_proto: "<code>https://</code> to protokół, czyli sposób rozmowy z serwerem. Litera „s” oznacza połączenie szyfrowane. Jeśli go nie wpiszesz, przeglądarka dopisze go sama.",
+        step_1_li_sub: "<code>www.</code> to subdomena, część adresu, którą wybiera właściciel domeny",
+        step_1_li_domain: "<code>google.com</code> to domena, czyli nazwa, którą DNS zamieni na adres IP",
+        step_1_li_path: "<code>/search</code> to ścieżka do konkretnej strony na serwerze. Pusta ścieżka oznacza stronę główną, <code>/</code>",
+        step_1_li_query: "<code>?q=hello</code> to zapytanie, czyli dodatkowe dane dla serwera, na przykład szukana fraza",
 
         // Step 2
         browser_cache: "Cache przeglądarki",
         os_cache: "Cache systemu",
         router_cache: "Cache routera",
-        isp_cache: "Cache ISP",
+        isp_cache: "Cache dostawcy",
         cache_miss: "BRAK",
-        cache_hit: "TRAFIENIE",
-        cache_arrow_label: "Brak w cache → Zapytaj serwer DNS",
-        step_2_title: "Sprawdź cache",
-        step_2_desc: "Przed wykonaniem jakichkolwiek żądań sieciowych, przeglądarka sprawdza, czy już zna adres IP dla tej domeny. Przeszukuje wiele warstw cache.",
-        step_2_card_title: "Hierarchia cache",
-        step_2_li_browser: "<strong>Cache przeglądarki:</strong> Ostatnio odwiedzane strony zapisane w pamięci przeglądarki",
-        step_2_li_os: "<strong>Cache systemu:</strong> Cache resolvera DNS systemu operacyjnego",
-        step_2_li_router: "<strong>Cache routera:</strong> Zapisane wpisy DNS w routerze domowym",
-        step_2_li_isp: "<strong>Cache ISP:</strong> Cache DNS dostawcy usług internetowych",
+        cache_arrow_label: "Brak adresu → pytamy DNS",
+        step_2_title: "Szukanie adresu w cache",
+        step_2_desc: "Zanim przeglądarka wyśle cokolwiek do internetu, sprawdza, czy adres IP google.com nie jest już zapisany gdzieś po drodze. Cache to podręczna pamięć ostatnich odpowiedzi, a każdy wpis traci ważność po określonym czasie (TTL). W tej animacji wszystkie warstwy są puste, więc przeglądarka musi zapytać DNS.",
+        step_2_card_title: "Gdzie szuka, po kolei",
+        step_2_li_browser: "<strong>Przeglądarka:</strong> adresy IP niedawno odwiedzonych domen",
+        step_2_li_os: "<strong>System operacyjny:</strong> wspólna pamięć DNS wszystkich programów na komputerze",
+        step_2_li_router: "<strong>Router:</strong> domowy router często sam pamięta odpowiedzi DNS dla wszystkich urządzeń w sieci",
+        step_2_li_isp: "<strong>Resolver dostawcy (ISP):</strong> serwer DNS Twojego dostawcy internetu. Ma największy cache, a jeśli i tam nie ma adresu, sam pyta kolejne serwery DNS (krok 3).",
 
         // Step 3
-        root_server: "Serwer root",
-        root_response: '"Zapytaj .com TLD"',
-        tld_server: "Serwer TLD .com",
-        tld_response: '"Zapytaj NS Google"',
-        auth_server: "Autorytatywny NS",
-        resolved_ip: "Rozwiązany adres IP",
-        step_3_title: "Rozwiązywanie DNS",
-        step_3_desc: "DNS (Domain Name System - System Nazw Domen) tłumaczy czytelne dla ludzi nazwy domen na adresy IP, których komputery używają do identyfikacji w sieci.",
-        step_3_card_title: "Hierarchia DNS",
-        step_3_li_root: "<strong>Serwer root:</strong> Wie, gdzie znaleźć serwery TLD (.com, .org, itd.)",
-        step_3_li_tld: "<strong>Serwer TLD:</strong> Wie, które serwery autorytatywne obsługują konkretne domeny",
-        step_3_li_auth: "<strong>Autorytatywny NS:</strong> Ma rzeczywisty adres IP dla domeny",
+        root_server: "Serwer główny",
+        root_response: "„Zapytaj serwer .com”",
+        tld_server: "Serwer .com",
+        tld_response: "„Zapytaj serwer Google”",
+        auth_server: "Serwer autorytatywny",
+        resolved_ip: "Adres IP znaleziony",
+        step_3_title: "Zapytanie DNS",
+        step_3_desc: "DNS zamienia nazwy domen na adresy IP, podobnie jak książka telefoniczna zamienia nazwisko na numer. Żaden pojedynczy komputer nie zna wszystkich adresów, więc resolver dostawcy pyta po kolei trzy serwery, od najogólniejszego do najbardziej szczegółowego. Odpowiedź zapisuje potem w cache, żeby następnym razem było szybciej.",
+        step_3_card_title: "Kto zna odpowiedź",
+        step_3_li_root: "<strong>Serwer główny (root):</strong> nie zna adresu google.com, ale wie, kto obsługuje końcówki .com, .org, .pl i pozostałe",
+        step_3_li_tld: "<strong>Serwer .com (TLD):</strong> wie, który serwer odpowiada za google.com",
+        step_3_li_auth: "<strong>Serwer autorytatywny:</strong> należy do właściciela domeny i podaje ostateczny adres IP, tutaj 142.250.185.46",
 
         // Step 4
         your_browser: "Twoja przeglądarka",
         google_server: "Serwer Google",
-        tcp_established: "Połączenie TCP ustanowione",
-        step_4_title: "Trójstronny handshake TCP",
-        step_4_desc: "Zanim jakiekolwiek dane mogą być wymieniane, musi zostać ustanowione niezawodne połączenie za pomocą trójstronnego handshake'u TCP (Transmission Control Protocol).",
-        step_4_card_title: "Trójstronny handshake",
-        step_4_li_syn: "<strong>SYN:</strong> Klient wysyła żądanie synchronizacji",
-        step_4_li_synack: "<strong>SYN-ACK:</strong> Serwer potwierdza i wysyła własną synchronizację",
-        step_4_li_ack: "<strong>ACK:</strong> Klient potwierdza, połączenie jest ustanowione",
+        tcp_established: "Połączenie TCP otwarte",
+        step_4_title: "Połączenie TCP",
+        step_4_desc: "Przeglądarka zna już adres IP serwera. Zanim poprosi o stronę, oba komputery nawiązują połączenie przez protokół TCP. TCP pilnuje, żeby dane dotarły w całości i we właściwej kolejności, a zgubione pakiety wysyła jeszcze raz. Na początek wystarczą trzy krótkie wiadomości.",
+        step_4_card_title: "Uzgadnianie w trzech krokach",
+        step_4_li_syn: "<strong>SYN:</strong> przeglądarka prosi o połączenie i podaje numer, od którego zacznie liczyć swoje dane",
+        step_4_li_synack: "<strong>SYN-ACK:</strong> serwer potwierdza i podaje własny numer początkowy",
+        step_4_li_ack: "<strong>ACK:</strong> przeglądarka potwierdza numer serwera. Połączenie jest otwarte.",
 
         // Step 5
         client_hello: "Client Hello",
         server_hello: "Server Hello + certyfikat",
         key_exchange: "Wymiana kluczy",
-        secure_channel: "Bezpieczny kanał",
-        step_5_title: "TLS handshake",
-        step_5_desc: "Dla połączeń HTTPS, handshake TLS (Transport Layer Security) ustanawia zaszyfrowany kanał komunikacyjny, aby chronić Twoje dane.",
-        step_5_card_title: "Kroki TLS handshake",
-        step_5_li_hello: "<strong>Client Hello:</strong> Przeglądarka wysyła obsługiwane metody szyfrowania",
-        step_5_li_server: "<strong>Server Hello:</strong> Serwer wysyła swój certyfikat i wybrane szyfrowanie",
-        step_5_li_key: "<strong>Wymiana kluczy:</strong> Obie strony ustalają wspólne klucze szyfrowania",
-        step_5_li_secure: "<strong>Bezpieczny kanał:</strong> Cała dalsza komunikacja jest szyfrowana",
+        secure_channel: "Kanał szyfrowany",
+        step_5_title: "Szyfrowanie TLS",
+        step_5_desc: "Adres zaczyna się od https, więc zanim popłynie jakakolwiek treść, przeglądarka i serwer uzgadniają wspólny tajny klucz (TLS handshake). Od tej chwili nikt po drodze, ani router, ani dostawca internetu, nie odczyta przesyłanych danych i ich nie zmieni.",
+        step_5_card_title: "Jak powstaje wspólny klucz",
+        step_5_li_hello: "<strong>Client Hello:</strong> przeglądarka wysyła listę obsługiwanych szyfrów i swoją część klucza",
+        step_5_li_server: "<strong>Server Hello + certyfikat:</strong> serwer wybiera szyfr, odsyła swoją część klucza i certyfikat, który dowodzi, że to naprawdę google.com",
+        step_5_li_key: "<strong>Wymiana kluczy:</strong> przeglądarka sprawdza certyfikat, a każda ze stron wylicza z wymienionych części ten sam klucz sesji. Sam klucz nigdy nie przechodzi przez sieć.",
+        step_5_li_secure: "<strong>Kanał szyfrowany:</strong> wszystko, co dalej, łącznie z żądaniem i odpowiedzią HTTP, jest szyfrowane tym kluczem",
 
         // Step 6
         step_6_title: "Żądanie HTTP",
-        step_6_desc: "Twoja przeglądarka wysyła żądanie HTTP GET do serwera, prosząc o zawartość strony. Żądanie zawiera nagłówki z informacjami o Twojej przeglądarce i jaką zawartość może zaakceptować.",
-        step_6_card_title: "Komponenty żądania HTTP",
-        step_6_li_method: "<strong>Metoda:</strong> GET (pobierz), POST (wyślij), itd.",
-        step_6_li_path: "<strong>Ścieżka:</strong> Konkretny zasób, który jest żądany",
-        step_6_li_headers: "<strong>Nagłówki:</strong> Metadane o żądaniu",
-        step_6_li_body: "<strong>Treść:</strong> Opcjonalne dane (głównie dla żądań POST)",
+        step_6_desc: "Połączenie jest otwarte i zaszyfrowane, więc przeglądarka prosi o stronę. Wysyła żądanie HTTP: metodę GET („daj mi”), ścieżkę / (strona główna) i nagłówki z informacjami o sobie, na przykład w jakim języku woli dostać odpowiedź.",
+        step_6_card_title: "Z czego składa się żądanie",
+        step_6_li_method: "<strong>Metoda:</strong> co przeglądarka chce zrobić. GET pobiera stronę, POST wysyła dane, na przykład formularz.",
+        step_6_li_path: "<strong>Ścieżka:</strong> który zasób z serwera; / to strona główna",
+        step_6_li_headers: "<strong>Nagłówki:</strong> dodatkowe informacje, takie jak Host (nazwa strony), Accept-Language (język) czy User-Agent (nazwa i wersja przeglądarki)",
+        step_6_li_body: "<strong>Treść:</strong> dane do wysłania, na przykład wypełniony formularz. Żądanie GET zwykle jej nie ma.",
 
         // Step 7
         step_7_title: "Odpowiedź serwera",
-        step_7_desc: "Serwer przetwarza Twoje żądanie i odsyła odpowiedź zawierającą dokument HTML, wraz z arkuszami stylów CSS i plikami JavaScript potrzebnymi do wyrenderowania strony.",
-        step_7_card_title: "Zawartość odpowiedzi",
-        step_7_li_html: "<strong>HTML:</strong> Struktura i zawartość strony",
-        step_7_li_css: "<strong>CSS:</strong> Reguły stylów dla prezentacji wizualnej",
-        step_7_li_js: "<strong>JavaScript:</strong> Kod dla interaktywności i dynamicznego zachowania",
-        step_7_li_status: "<strong>Kod statusu:</strong> 200 OK, 404 Not Found, itd.",
+        step_7_desc: "Serwer odsyła kod statusu, nagłówki i dokument HTML. HTML odwołuje się do kolejnych plików: arkuszy CSS, skryptów JavaScript i obrazków. Przeglądarka pobiera je następnymi żądaniami, często tym samym połączeniem i po kilka naraz.",
+        step_7_card_title: "Co przychodzi z serwera",
+        step_7_li_status: "<strong>Kod statusu:</strong> krótki wynik żądania: 200 OK (wszystko w porządku), 301 (strona się przeniosła), 404 (nie ma takiej strony)",
+        step_7_li_html: "<strong>HTML:</strong> treść i struktura strony: nagłówki, akapity, linki, obrazki",
+        step_7_li_css: "<strong>CSS:</strong> wygląd: kolory, czcionki, odstępy, układ",
+        step_7_li_js: "<strong>JavaScript:</strong> program, który reaguje na kliknięcia i może zmieniać stronę po załadowaniu",
 
         // Step 8
-        parse_html: "Parsuj HTML",
-        tokenizer: "Tokenizer",
+        parse_html: "HTML",
+        tokenizer: "Tokenizacja",
         dom_tree: "Drzewo DOM",
-        parse_css: "Parsuj CSS",
+        parse_css: "CSS",
         cssom_tree: "Drzewo CSSOM",
-        load_js: "Załaduj JavaScript",
+        load_js: "JavaScript",
         render_tree: "Drzewo renderowania",
         layout: "Układ",
         paint: "Malowanie",
-        page_success: "Strona załadowana pomyślnie!",
-        step_8_title: "Renderowanie przeglądarki",
-        step_8_desc: "Przeglądarka przetwarza wszystkie otrzymane pliki, aby skonstruować i wyświetlić finalną stronę. Obejmuje to parsowanie, budowanie struktur drzewiastych i malowanie pikseli na ekranie.",
-        step_8_card_title: "Pipeline renderowania",
-        step_8_li_dom: "<strong>Drzewo DOM:</strong> HTML jest parsowany do Document Object Model",
-        step_8_li_cssom: "<strong>Drzewo CSSOM:</strong> CSS jest parsowany do modelu obiektów stylów",
-        step_8_li_render: "<strong>Drzewo renderowania:</strong> DOM + CSSOM połączone dla widocznych elementów",
-        step_8_li_layout: "<strong>Układ:</strong> Oblicza dokładną pozycję i rozmiar elementów",
-        step_8_li_paint: "<strong>Malowanie:</strong> Wypełnia piksele na ekranie",
+        page_success: "Strona gotowa",
+        step_8_title: "Renderowanie strony",
+        step_8_desc: "Przeglądarka ma już wszystkie pliki. Teraz zamienia tekst HTML i CSS na piksele: buduje z nich dwa drzewa, łączy je, oblicza, gdzie co ma stać, i dopiero wtedy rysuje stronę na ekranie.",
+        step_8_card_title: "Etapy renderowania",
+        step_8_li_dom: "<strong>Drzewo DOM:</strong> HTML rozbity na znaczniki i ułożony w drzewo elementów strony",
+        step_8_li_cssom: "<strong>Drzewo CSSOM:</strong> reguły CSS ułożone w drzewo, z którego wynika styl każdego elementu",
+        step_8_li_js: "<strong>JavaScript:</strong> skrypt może zmienić DOM i CSSOM. Znacznik <code>&lt;script&gt;</code> bez atrybutu async lub defer wstrzymuje parsowanie HTML, dopóki skrypt się nie wykona.",
+        step_8_li_render: "<strong>Drzewo renderowania:</strong> DOM i CSSOM połączone w jedno. Trafiają tu tylko widoczne elementy, więc te z display: none wypadają.",
+        step_8_li_layout: "<strong>Układ (layout):</strong> przeglądarka oblicza dokładne położenie i rozmiar każdego elementu",
+        step_8_li_paint: "<strong>Malowanie (paint):</strong> elementy zamieniają się w piksele: tekst, kolory, ramki, obrazki",
 
         // Navigation
-        previous: "Poprzedni",
-        auto_play: "Auto Play",
+        previous: "Wstecz",
+        auto_play: "Odtwarzaj",
         pause: "Pauza",
-        next: "Następny",
+        next: "Dalej",
+        kbd_steps: "kroki",
+        kbd_space: "Spacja",
+        kbd_auto: "odtwarzanie",
 
         // Footer
-        footer_text: "Interaktywna wizualizacja edukacyjna • Dowiedz się, jak działa internet"
+        footer_text: "Interaktywna lekcja o tym, jak działa internet"
     }
 };
 
@@ -273,7 +299,7 @@ const translations = {
 
 class I18n {
     constructor() {
-        this.currentLang = localStorage.getItem('language') || 'en';
+        this.currentLang = localStorage.getItem('language') || 'pl';
         this.translations = translations;
         this.init();
     }
@@ -338,6 +364,7 @@ class I18n {
         const autoBtn = document.getElementById('autoBtn');
         if (autoBtn && window.urlJourneyApp) {
             window.urlJourneyApp.updateAutoPlayButton();
+            window.urlJourneyApp.announceStep();
         }
     }
 
@@ -366,7 +393,7 @@ class URLJourneyApp {
         this.totalSteps = 8;
         this.isAutoPlaying = false;
         this.autoPlayInterval = null;
-        this.autoPlayDelay = 4000; // 4 seconds per step
+        this.autoPlayDelay = 6000; // 6 seconds per step: time to watch the animation and read the lead
 
         this.init();
     }
@@ -414,7 +441,8 @@ class URLJourneyApp {
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') this.goToPrevStep();
             if (e.key === 'ArrowRight') this.goToNextStep();
-            if (e.key === ' ') {
+            // Space on a focused button already clicks it; only toggle autoplay elsewhere
+            if (e.key === ' ' && !e.target.closest('button, a, input')) {
                 e.preventDefault();
                 this.toggleAutoPlay();
             }
@@ -473,7 +501,7 @@ class URLJourneyApp {
 
     updateAutoPlayButton() {
         document.body.dataset.playing = this.isAutoPlaying;
-        const buttonText = this.autoBtn.querySelector('span');
+        const buttonText = this.autoBtn.querySelector('.auto-label');
         if (this.isAutoPlaying) {
             this.autoBtn.classList.add('playing');
             buttonText.setAttribute('data-i18n', 'pause');
@@ -493,6 +521,17 @@ class URLJourneyApp {
         this.updateTimelineProgress();
         this.updateStepContents();
         this.updateNavigationButtons();
+        this.announceStep();
+    }
+
+    announceStep() {
+        const status = document.getElementById('stepStatus');
+        const title = document.querySelector(`#step${this.currentStep} h2`);
+        if (!status || !title) return;
+        const position = i18n.t('step_of')
+            .replace('{n}', this.currentStep)
+            .replace('{total}', this.totalSteps);
+        status.textContent = `${position}: ${title.textContent}`;
     }
 
     updateTimelineSteps() {
@@ -529,14 +568,10 @@ class URLJourneyApp {
     }
 
     resetAnimations(container) {
-        // Clone and replace to reset CSS animations
-        const animatedElements = container.querySelectorAll('[data-delay], [data-tls], [data-render]');
-
-        animatedElements.forEach(el => {
-            // Force reflow to restart animations
-            el.style.animation = 'none';
-            el.offsetHeight; // Trigger reflow
-            el.style.animation = null;
+        // Restart every CSS animation in the step (entrances, travelling messages)
+        container.getAnimations({ subtree: true }).forEach(a => {
+            a.cancel();
+            a.play();
         });
     }
 
@@ -678,41 +713,17 @@ class SmoothScroll {
     }
 }
 
-// Intersection Observer for scroll-triggered animations
-class ScrollAnimations {
-    constructor() {
-        this.init();
-    }
-
-    init() {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                    }
-                });
-            },
-            {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            }
-        );
-
-        document.querySelectorAll('.step-content').forEach(el => {
-            observer.observe(el);
-        });
-    }
-}
-
 // Initialize app when DOM is ready
 let i18n, app;
 document.addEventListener('DOMContentLoaded', () => {
+    // Icons first: <i data-lucide> placeholders become inline SVG (Lucide UMD from CDN)
+    if (window.lucide) {
+        lucide.createIcons({ attrs: { 'stroke-width': 1.75, 'aria-hidden': 'true' } });
+    }
     i18n = new I18n();
     app = new URLJourneyApp();
     const tooltip = new Tooltip();
     const smoothScroll = new SmoothScroll();
-    const scrollAnimations = new ScrollAnimations();
 
     // Expose to window for debugging and cross-module access
     window.i18n = i18n;
