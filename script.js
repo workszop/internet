@@ -16,7 +16,6 @@ const translations = {
         page_description: "Learn what happens behind the scenes when you type a website URL in your browser and press Enter. Interactive educational visualization.",
 
         // Header
-        title_prefix: "Behind the Scenes:",
         title_main: "What Happens When You Enter a URL",
         subtitle: "An interactive journey through the web request lifecycle",
 
@@ -32,7 +31,7 @@ const translations = {
 
         // Step 1
         speech_bubble: "I want to visit",
-        step_1_title: "Step 1: User Enters URL",
+        step_1_title: "User Enters URL",
         step_1_desc: "The journey begins when you type a website address (URL) into your browser's address bar and press Enter. The browser now needs to figure out how to reach that website.",
         step_1_card_title: "What is a URL?",
         step_1_card_desc: "<strong>URL</strong> stands for <em>Uniform Resource Locator</em>. It's the address that tells your browser where to find a specific resource on the internet.",
@@ -45,7 +44,7 @@ const translations = {
         cache_miss: "MISS",
         cache_hit: "HIT",
         cache_arrow_label: "Cache miss → Query DNS server",
-        step_2_title: "Step 2: Check Cache",
+        step_2_title: "Check Cache",
         step_2_desc: "Before making any network requests, the browser checks if it already knows the IP address for this domain. It searches through multiple cache layers.",
         step_2_card_title: "Cache Hierarchy",
         step_2_li_browser: "<strong>Browser Cache:</strong> Recently visited sites stored in browser memory",
@@ -60,7 +59,7 @@ const translations = {
         tld_response: '"Ask Google\'s NS"',
         auth_server: "Authoritative NS",
         resolved_ip: "Resolved IP Address",
-        step_3_title: "Step 3: DNS Resolution",
+        step_3_title: "DNS Resolution",
         step_3_desc: "DNS (Domain Name System) translates human-readable domain names into IP addresses that computers use to identify each other on the network.",
         step_3_card_title: "DNS Hierarchy",
         step_3_li_root: "<strong>Root Server:</strong> Knows where to find TLD servers (.com, .org, etc.)",
@@ -71,7 +70,7 @@ const translations = {
         your_browser: "Your Browser",
         google_server: "Google Server",
         tcp_established: "TCP Connection Established",
-        step_4_title: "Step 4: TCP 3-Way Handshake",
+        step_4_title: "TCP 3-Way Handshake",
         step_4_desc: "Before any data can be exchanged, a reliable connection must be established using the TCP (Transmission Control Protocol) three-way handshake.",
         step_4_card_title: "The Three-Way Handshake",
         step_4_li_syn: "<strong>SYN:</strong> Client sends a synchronization request",
@@ -83,7 +82,7 @@ const translations = {
         server_hello: "Server Hello + Certificate",
         key_exchange: "Key Exchange",
         secure_channel: "Secure Channel",
-        step_5_title: "Step 5: TLS Handshake",
+        step_5_title: "TLS Handshake",
         step_5_desc: "For HTTPS connections, a TLS (Transport Layer Security) handshake establishes an encrypted communication channel to protect your data.",
         step_5_card_title: "TLS Handshake Steps",
         step_5_li_hello: "<strong>Client Hello:</strong> Browser sends supported encryption methods",
@@ -92,7 +91,7 @@ const translations = {
         step_5_li_secure: "<strong>Secure Channel:</strong> All further communication is encrypted",
 
         // Step 6
-        step_6_title: "Step 6: HTTP Request",
+        step_6_title: "HTTP Request",
         step_6_desc: "Your browser sends an HTTP GET request to the server, asking for the webpage content. The request includes headers with information about your browser and what content you can accept.",
         step_6_card_title: "HTTP Request Components",
         step_6_li_method: "<strong>Method:</strong> GET (retrieve), POST (submit), etc.",
@@ -101,7 +100,7 @@ const translations = {
         step_6_li_body: "<strong>Body:</strong> Optional data (mainly for POST requests)",
 
         // Step 7
-        step_7_title: "Step 7: Server Response",
+        step_7_title: "Server Response",
         step_7_desc: "The server processes your request and sends back a response containing the HTML document, along with CSS stylesheets and JavaScript files needed to render the page.",
         step_7_card_title: "Response Contents",
         step_7_li_html: "<strong>HTML:</strong> The structure and content of the page",
@@ -120,7 +119,7 @@ const translations = {
         layout: "Layout",
         paint: "Paint",
         page_success: "Page Successfully Loaded!",
-        step_8_title: "Step 8: Browser Rendering",
+        step_8_title: "Browser Rendering",
         step_8_desc: "The browser processes all received files to construct and display the final webpage. This involves parsing, building tree structures, and painting pixels on screen.",
         step_8_card_title: "Rendering Pipeline",
         step_8_li_dom: "<strong>DOM Tree:</strong> HTML is parsed into a Document Object Model",
@@ -141,12 +140,11 @@ const translations = {
 
     pl: {
         // Page meta
-        page_title: "Co się dzieje gdy wpisujesz URL | Interaktywny przewodnik",
+        page_title: "Co się dzieje, gdy wpisujesz URL | Interaktywny przewodnik",
         page_description: "Dowiedz się, co dzieje się za kulisami, gdy wpisujesz adres strony w przeglądarce i naciskasz Enter. Interaktywna wizualizacja edukacyjna.",
 
         // Header
-        title_prefix: "Za kulisami:",
-        title_main: "Co się dzieje gdy wpisujesz URL",
+        title_main: "Co się dzieje, gdy wpisujesz URL",
         subtitle: "Interaktywna podróż przez cykl życia żądania sieciowego",
 
         // Timeline labels
@@ -161,7 +159,7 @@ const translations = {
 
         // Step 1
         speech_bubble: "Chcę odwiedzić",
-        step_1_title: "Krok 1: Użytkownik wpisuje URL",
+        step_1_title: "Użytkownik wpisuje URL",
         step_1_desc: "Podróż zaczyna się, gdy wpisujesz adres strony internetowej (URL) w pasek adresu przeglądarki i naciskasz Enter. Przeglądarka musi teraz dowiedzieć się, jak dotrzeć do tej strony.",
         step_1_card_title: "Czym jest URL?",
         step_1_card_desc: "<strong>URL</strong> to skrót od <em>Uniform Resource Locator</em> (Jednolity Lokalizator Zasobów). To adres, który mówi przeglądarce, gdzie znaleźć konkretny zasób w internecie.",
@@ -174,7 +172,7 @@ const translations = {
         cache_miss: "BRAK",
         cache_hit: "TRAFIENIE",
         cache_arrow_label: "Brak w cache → Zapytaj serwer DNS",
-        step_2_title: "Krok 2: Sprawdź cache",
+        step_2_title: "Sprawdź cache",
         step_2_desc: "Przed wykonaniem jakichkolwiek żądań sieciowych, przeglądarka sprawdza, czy już zna adres IP dla tej domeny. Przeszukuje wiele warstw cache.",
         step_2_card_title: "Hierarchia cache",
         step_2_li_browser: "<strong>Cache przeglądarki:</strong> Ostatnio odwiedzane strony zapisane w pamięci przeglądarki",
@@ -189,7 +187,7 @@ const translations = {
         tld_response: '"Zapytaj NS Google"',
         auth_server: "Autorytatywny NS",
         resolved_ip: "Rozwiązany adres IP",
-        step_3_title: "Krok 3: Rozwiązywanie DNS",
+        step_3_title: "Rozwiązywanie DNS",
         step_3_desc: "DNS (Domain Name System - System Nazw Domen) tłumaczy czytelne dla ludzi nazwy domen na adresy IP, których komputery używają do identyfikacji w sieci.",
         step_3_card_title: "Hierarchia DNS",
         step_3_li_root: "<strong>Serwer root:</strong> Wie, gdzie znaleźć serwery TLD (.com, .org, itd.)",
@@ -200,7 +198,7 @@ const translations = {
         your_browser: "Twoja przeglądarka",
         google_server: "Serwer Google",
         tcp_established: "Połączenie TCP ustanowione",
-        step_4_title: "Krok 4: Trójstronny handshake TCP",
+        step_4_title: "Trójstronny handshake TCP",
         step_4_desc: "Zanim jakiekolwiek dane mogą być wymieniane, musi zostać ustanowione niezawodne połączenie za pomocą trójstronnego handshake'u TCP (Transmission Control Protocol).",
         step_4_card_title: "Trójstronny handshake",
         step_4_li_syn: "<strong>SYN:</strong> Klient wysyła żądanie synchronizacji",
@@ -212,7 +210,7 @@ const translations = {
         server_hello: "Server Hello + certyfikat",
         key_exchange: "Wymiana kluczy",
         secure_channel: "Bezpieczny kanał",
-        step_5_title: "Krok 5: TLS handshake",
+        step_5_title: "TLS handshake",
         step_5_desc: "Dla połączeń HTTPS, handshake TLS (Transport Layer Security) ustanawia zaszyfrowany kanał komunikacyjny, aby chronić Twoje dane.",
         step_5_card_title: "Kroki TLS handshake",
         step_5_li_hello: "<strong>Client Hello:</strong> Przeglądarka wysyła obsługiwane metody szyfrowania",
@@ -221,7 +219,7 @@ const translations = {
         step_5_li_secure: "<strong>Bezpieczny kanał:</strong> Cała dalsza komunikacja jest szyfrowana",
 
         // Step 6
-        step_6_title: "Krok 6: Żądanie HTTP",
+        step_6_title: "Żądanie HTTP",
         step_6_desc: "Twoja przeglądarka wysyła żądanie HTTP GET do serwera, prosząc o zawartość strony. Żądanie zawiera nagłówki z informacjami o Twojej przeglądarce i jaką zawartość może zaakceptować.",
         step_6_card_title: "Komponenty żądania HTTP",
         step_6_li_method: "<strong>Metoda:</strong> GET (pobierz), POST (wyślij), itd.",
@@ -230,7 +228,7 @@ const translations = {
         step_6_li_body: "<strong>Treść:</strong> Opcjonalne dane (głównie dla żądań POST)",
 
         // Step 7
-        step_7_title: "Krok 7: Odpowiedź serwera",
+        step_7_title: "Odpowiedź serwera",
         step_7_desc: "Serwer przetwarza Twoje żądanie i odsyła odpowiedź zawierającą dokument HTML, wraz z arkuszami stylów CSS i plikami JavaScript potrzebnymi do wyrenderowania strony.",
         step_7_card_title: "Zawartość odpowiedzi",
         step_7_li_html: "<strong>HTML:</strong> Struktura i zawartość strony",
@@ -249,7 +247,7 @@ const translations = {
         layout: "Układ",
         paint: "Malowanie",
         page_success: "Strona załadowana pomyślnie!",
-        step_8_title: "Krok 8: Renderowanie przeglądarki",
+        step_8_title: "Renderowanie przeglądarki",
         step_8_desc: "Przeglądarka przetwarza wszystkie otrzymane pliki, aby skonstruować i wyświetlić finalną stronę. Obejmuje to parsowanie, budowanie struktur drzewiastych i malowanie pikseli na ekranie.",
         step_8_card_title: "Pipeline renderowania",
         step_8_li_dom: "<strong>Drzewo DOM:</strong> HTML jest parsowany do Document Object Model",
@@ -265,7 +263,7 @@ const translations = {
         next: "Następny",
 
         // Footer
-        footer_text: "Interaktywna wizualizacja edukacyjna • Dowiedz się jak działa internet"
+        footer_text: "Interaktywna wizualizacja edukacyjna • Dowiedz się, jak działa internet"
     }
 };
 
@@ -306,6 +304,7 @@ class I18n {
 
         // Update HTML lang attribute
         document.documentElement.lang = lang;
+        document.body.dataset.lang = lang;
 
         // Update all elements with data-i18n attribute
         this.translatePage();
@@ -345,11 +344,9 @@ class I18n {
     updateLanguageButtons() {
         const langButtons = document.querySelectorAll('.lang-btn');
         langButtons.forEach(btn => {
-            if (btn.dataset.lang === this.currentLang) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
+            const isActive = btn.dataset.lang === this.currentLang;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-pressed', isActive);
         });
     }
 
@@ -475,6 +472,7 @@ class URLJourneyApp {
     }
 
     updateAutoPlayButton() {
+        document.body.dataset.playing = this.isAutoPlaying;
         const buttonText = this.autoBtn.querySelector('span');
         if (this.isAutoPlaying) {
             this.autoBtn.classList.add('playing');
@@ -488,6 +486,9 @@ class URLJourneyApp {
     }
 
     updateUI() {
+        // DOM contract: current step + autoplay state readable without scraping the UI
+        document.body.dataset.step = this.currentStep;
+        document.body.dataset.playing = this.isAutoPlaying;
         this.updateTimelineSteps();
         this.updateTimelineProgress();
         this.updateStepContents();
@@ -564,16 +565,18 @@ class URLJourneyApp {
 
     animateTyping() {
         const url = 'www.google.com';
+        // Re-entering step 1 mid-typing must not start a second, interleaved interval
+        clearInterval(this.typingInterval);
         this.urlText.textContent = '';
         this.cursor.style.opacity = '1';
 
         let i = 0;
-        const typingInterval = setInterval(() => {
+        this.typingInterval = setInterval(() => {
             if (i < url.length) {
                 this.urlText.textContent += url[i];
                 i++;
             } else {
-                clearInterval(typingInterval);
+                clearInterval(this.typingInterval);
                 // Keep cursor blinking for a moment then hide
                 setTimeout(() => {
                     this.cursor.style.opacity = '0';
@@ -613,22 +616,6 @@ class Tooltip {
     createTooltip() {
         this.tooltip = document.createElement('div');
         this.tooltip.className = 'tooltip';
-        this.tooltip.style.cssText = `
-            position: fixed;
-            background: rgba(26, 31, 46, 0.95);
-            backdrop-filter: blur(10px);
-            color: #E6EDF3;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            max-width: 250px;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            z-index: 1000;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        `;
         document.body.appendChild(this.tooltip);
     }
 
@@ -730,6 +717,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Expose to window for debugging and cross-module access
     window.i18n = i18n;
     window.urlJourneyApp = app;
+
+    // ─── Reveal ───
+    const FONT_WAIT_MS = 1500;
+    const BRAND_FONTS = ['400 1em Outfit', '800 1em Outfit', '400 1em "IBM Plex Sans"', '600 1em "IBM Plex Sans"', '400 1em "Roboto Mono"'];
+    Promise.race([
+        Promise.all(BRAND_FONTS.map(f => document.fonts.load(f).catch(() => null))),
+        new Promise(r => setTimeout(r, FONT_WAIT_MS)),
+    ]).then(() => document.documentElement.classList.add('app-ready'));
 });
 
 // Add touch support for mobile devices
