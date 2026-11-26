@@ -92,9 +92,9 @@ button {
     border-left: 1px solid var(--line-2, #d9d3c7);
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 19px;
-    letter-spacing: -.01em;
-    line-height: 1.2;
+    font-size: 38px;
+    letter-spacing: -.02em;
+    line-height: 1.1;
     color: var(--ink-2, #4a4540);
     white-space: nowrap;
     overflow: hidden;
@@ -103,6 +103,10 @@ button {
     flex: 0 1 auto;
 }
 
+/* bigger app title (38px) where the bar has room; step down where it would truncate */
+@media (max-width: 972px) { .edu-app-title { font-size: 30px; } }
+@media (max-width: 841px) { .edu-app-title { font-size: 24px; } }
+@media (max-width: 699px) { .edu-app-title { font-size: 19px; } }
 @media (max-width: 640px) {
     .edu-app-title {
         font-size: 15px;
