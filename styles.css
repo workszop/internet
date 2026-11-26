@@ -75,6 +75,7 @@ button {
     height: 64px;
     display: block;
     margin-right: -6px;
+    flex-shrink: 0;
 }
 
 .edu-wordmark {
@@ -85,12 +86,38 @@ button {
     color: var(--ink);
 }
 
+.edu-app-title {
+    margin: 0 0 0 14px;
+    padding-left: 14px;
+    border-left: 1px solid var(--line-2, #d9d3c7);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -.01em;
+    line-height: 1.2;
+    color: var(--ink-2, #4a4540);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex: 0 1 auto;
+}
+
+@media (max-width: 640px) {
+    .edu-app-title {
+        font-size: 15px;
+        margin-left: 10px;
+        padding-left: 10px;
+    }
+}
+
 /* ========================================
    Language switcher (segmented toggle)
    ======================================== */
 
 .language-switcher {
     margin-left: auto;
+    flex-shrink: 0;
     display: inline-flex;
     gap: 2px;
     padding: 3px;
@@ -140,20 +167,10 @@ button {
    ======================================== */
 
 .header {
-    padding: 44px 0 36px;
+    padding: 28px 0 28px;
     margin-bottom: 32px;
     text-align: left;
     border-bottom: 1px solid var(--line-2);
-}
-
-.title-main {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(2.3rem, 5vw, 3.3rem);
-    letter-spacing: -.025em;
-    line-height: 1.05;
-    color: var(--ink);
-    margin: 0 0 14px;
 }
 
 .subtitle {
@@ -1322,7 +1339,7 @@ button {
     }
 
     .header {
-        padding: 28px 0 32px;
+        padding: 20px 0 24px;
     }
 
     .browser-bar-inner {
